@@ -16,7 +16,7 @@ public class ScoreManager {
 		if (!plugin.getConfig().contains("Players." + p.getName() + p.getUniqueId())) {
 			plugin.getConfig().set("Players." + p.getName() + p.getUniqueId() + ".Score", i);
 		} else {
-			plugin.getConfig().set("Players." + p.getName() + p.getUniqueId() + ".Score", plugin.getConfig().getInt("Players." + p.getUniqueId() + ".Score") + 1);
+			plugin.getConfig().set("Players." + p.getName() + p.getUniqueId() + ".Score", plugin.getConfig().getInt("Players." + p.getUniqueId() + ".Score") + i);
 		}
 		plugin.saveConfig();
 	}
