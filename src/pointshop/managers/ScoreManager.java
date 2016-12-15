@@ -12,25 +12,26 @@ public class ScoreManager {
 	}
 
 	public static void addScore(Player p, int i) {
-		int score = plugin.getConfig().getInt("Players." + p.getUniqueId() + ".Score");
-		if (!plugin.getConfig().contains("Players." + p.getName() + p.getUniqueId())) {
-			plugin.getConfig().set("Players." + p.getName() + p.getUniqueId() + ".Score", i);
+		String playerConfig = "Players." + p.getName() + p.getUniqueId();
+		if (!plugin.getConfig().contains(playerConfig)) {
+			plugin.getConfig().set(playerConfig + ".Score", i);
 		} else {
-			plugin.getConfig().set("Players." + p.getName() + p.getUniqueId() + ".Score", plugin.getConfig().getInt("Players." + p.getUniqueId() + ".Score") + i);
+			plugin.getConfig().set(playerConfig + ".Score", getScore(p) + i);
 		}
 		plugin.saveConfig();
 	}
 
 	public static int getScore(Player p) {
-		return plugin.getConfig().getInt("Players." + p.getUniqueId() + ".Score");
+		return plugin.getConfig().getInt("Players." + p.getName() + p.getUniqueId() + ".Score");
 	}
 
 	public static void removeScore(Player p, int i) {
-		int score = plugin.getConfig().getInt("Players." + p.getUniqueId() + ".Score");
-		if (!plugin.getConfig().contains("Players." + p.getName() + p.getUniqueId())) {
-			plugin.getConfig().set("Players." + p.getName() + p.getUniqueId() + ".Score", 0);
+		String playerConfig = "Players." + p.getName() + p.getUniqueId();
+		if (!plugin.getConfig().contains(playerConfig)) {
+			plugin.getConfig().set(playerConfig + ".Score", 0);
 		} else {
-			plugin.getConfig().set("Players." + p.getName() + p.getUniqueId() + ".Score", plugin.getConfig().getInt("Players." + p.getUniqueId() + ".Score") - i);
+			int s = getScore(p) - i;
+			plugin.getConfig().set(playerConfig + ".Score", s < 0 ? 0 : s); //Prevents value from going below 0
 		}
 		plugin.saveConfig();
 	}
