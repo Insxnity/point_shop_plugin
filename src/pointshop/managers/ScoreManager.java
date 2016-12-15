@@ -15,10 +15,10 @@ public class ScoreManager {
 		int score = plugin.getConfig().getInt("Players." + p.getUniqueId() + ".Score");
 		if (!plugin.getConfig().contains("Players." + p.getName() + p.getUniqueId())) {
 			plugin.getConfig().set("Players." + p.getName() + p.getUniqueId() + ".Score", i);
-			plugin.saveConfig();
 		} else {
 			plugin.getConfig().set("Players." + p.getName() + p.getUniqueId() + ".Score", plugin.getConfig().getInt("Players." + p.getUniqueId() + ".Score") + 1);
 		}
+		plugin.saveConfig();
 	}
 
 	public static int getScore(Player p) {
@@ -29,10 +29,10 @@ public class ScoreManager {
 		int score = plugin.getConfig().getInt("Players." + p.getUniqueId() + ".Score");
 		if (!plugin.getConfig().contains("Players." + p.getName() + p.getUniqueId())) {
 			plugin.getConfig().set("Players." + p.getName() + p.getUniqueId() + ".Score", 0);
-			plugin.saveConfig();
 		} else {
 			plugin.getConfig().set("Players." + p.getName() + p.getUniqueId() + ".Score", plugin.getConfig().getInt("Players." + p.getUniqueId() + ".Score") - i);
 		}
+		plugin.saveConfig();
 	}
 
 
